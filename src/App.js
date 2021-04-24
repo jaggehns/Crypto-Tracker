@@ -4,6 +4,7 @@ import "./App.css";
 
 function App() {
   const [coins, setCoins] = useState([]);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     axios
@@ -16,12 +17,21 @@ function App() {
       .catch((error) => console.log(error));
   }, []);
 
+  const handleChange = (e) => {
+    setSearch(e.target.value);
+  };
+
   return (
     <div className="App">
       <div className="coin-search">
         <h1 className="coin-text">Search a currency</h1>
         <form>
-          <input type="text" placeholder="Search" className="coin-input" />
+          <input
+            type="text"
+            placeholder="Search"
+            className="coin-input"
+            onChange={handleChange}
+          />
         </form>
       </div>
     </div>
